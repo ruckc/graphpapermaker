@@ -4,12 +4,12 @@ A SvelteKit app for designing custom graph paper for print or planning workflows
 
 ## Features
 
-- Editable page width and height
+- Paper size presets plus custom width and height controls
 - Adjustable page margins
-- Grid spacing control
+- Grid spacing and line color/weight controls
 - Merged columns with start position and width configuration
 - Live SVG preview
-- Download as SVG for print or reuse
+- Download as SVG or print/save as PDF
 
 ## Local development
 
