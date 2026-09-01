@@ -88,8 +88,12 @@
     const link = document.createElement('a');
     link.href = url;
     link.download = 'graph-paper.svg';
+    document.body.appendChild(link);
     link.click();
-    URL.revokeObjectURL(url);
+    setTimeout(() => {
+      link.remove();
+      URL.revokeObjectURL(url);
+    }, 0);
   }
 
   function printPage() {
@@ -263,7 +267,8 @@
         />
 
         {#each metrics.verticalLines as x}
-          {@const isBoundary = x === metrics.marginLeft || x === metrics.marginLeft + metrics.usableWidth}
+          {@const lastVerticalLine = metrics.verticalLines.at(-1) ?? metrics.marginLeft}
+          {@const isBoundary = x === metrics.marginLeft || x === lastVerticalLine}
           <line
             x1={x}
             y1={metrics.marginTop}

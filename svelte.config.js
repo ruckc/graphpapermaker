@@ -1,6 +1,7 @@
 import adapter from '@sveltejs/adapter-static';
 
-const dev = process.argv.includes('dev');
+const repoName = process.env.GITHUB_REPOSITORY?.split('/').pop() ?? '';
+const basePath = process.env.BASE_PATH ?? (repoName ? `/${repoName}` : '');
 
 export default {
   kit: {
@@ -10,7 +11,7 @@ export default {
       fallback: '404.html'
     }),
     paths: {
-      base: dev ? '' : '/graphpapermaker'
+      base: basePath
     },
     prerender: {
       entries: ['*']

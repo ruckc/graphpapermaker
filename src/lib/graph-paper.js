@@ -6,8 +6,10 @@ export function buildSegments(cellsAcross, mergedColumns = []) {
   const safeAcross = Math.max(1, Number.isFinite(cellsAcross) ? Math.floor(cellsAcross) : 1);
   const ordered = [...mergedColumns]
     .map((entry) => {
-      const start = Math.max(1, Number(entry?.start ?? 1));
-      const width = Math.max(1, Number(entry?.width ?? 1));
+      const rawStart = Number(entry?.start ?? 1);
+      const rawWidth = Number(entry?.width ?? 1);
+      const start = Number.isFinite(rawStart) ? Math.max(1, Math.trunc(rawStart)) : 1;
+      const width = Number.isFinite(rawWidth) ? Math.max(1, Math.trunc(rawWidth)) : 1;
       return {
         start,
         width,

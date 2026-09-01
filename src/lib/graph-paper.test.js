@@ -12,6 +12,14 @@ test('buildSegments respects merged columns as wide blocks', () => {
   assert.equal(segments.length, 11);
 });
 
+test('buildSegments coerces non-integer merged column values to stable integer indices', () => {
+  const segments = buildSegments(20, [{ start: 1.75, width: 2.9 }]);
+
+  assert.ok(segments.every((segment) => Number.isInteger(segment.start) && Number.isInteger(segment.width)));
+  assert.equal(segments[0].start, 0);
+  assert.equal(segments[0].width, 2);
+});
+
 test('buildGridMetrics creates a preview for the supplied page margins and grid', () => {
   const metrics = buildGridMetrics({
     pageWidth: 500,
