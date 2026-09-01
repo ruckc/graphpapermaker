@@ -67,18 +67,19 @@ export function buildGridMetrics({
   const cellsAcross = Math.max(1, Math.floor(usableWidth / safeGridSize));
   const cellsDown = Math.max(1, Math.floor(usableHeight / safeGridSize));
   const segments = buildSegments(cellsAcross, mergedColumns);
+  const mergedRanges = segments
+    .filter((segment) => segment.merged)
+    .map((segment) => ({
+      start: segment.start,
+      end: segment.start + segment.width
+    }));
 
   const verticalLines = [];
   const horizontalLines = [];
 
   for (let x = 0; x <= cellsAcross; x += 1) {
     const px = left + x * safeGridSize;
-    const insideMerged = mergedColumns.some((entry) => {
-      if (!entry) return false;
-      const start = Math.max(0, Number(entry.start ?? 1) - 1);
-      const end = start + Math.max(1, Number(entry.width ?? 1));
-      return x > start && x < end && x > 0;
-    });
+    const insideMerged = mergedRanges.some((range) => x > range.start && x < range.end && x > 0);
 
     if (!insideMerged) {
       verticalLines.push(px);
