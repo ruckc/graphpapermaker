@@ -1,0 +1,30 @@
+{
+  "name": "graphpapermaker",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "test": "node --test src/lib/*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://localhost:26831/ruckc/graphpapermaker"
+  },
+  "keywords": [
+    "svelte",
+    "graph-paper",
+    "github-pages"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@sveltejs/adapter-static": "^3.0.10",
+    "@sveltejs/kit": "^2.70.3",
+    "@sveltejs/vite-plugin-svelte": "^7.3.0",
+    "svelte": "^5.57.0",
+    "vite": "^8.2.2"
+  }
+}
